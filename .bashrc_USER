@@ -1,0 +1,20 @@
+# set custome bash prompt
+PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
+
+# global alias
+alias l='ls -lp'
+alias ll='ls -lahp'
+alias lr='ls -lahprt' 
+alias h='history'
+
+# project alias
+alias youilabs='cd /Users/haochen/youilabs'
+alias eclipse='cd /Users/haochen/youilabs/RogersEclipse'
+alias uswish='cd /Users/haochen/youilabs/RogersEclipse/uswish'
+alias iosh='cd build/ios-handset'
+alias iost='cd build/ios-tablet'
+alias ctagdb='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=c++ .'
+alias cscopedb='ack -f --cpp >| cscope.files cscope -b -q -k'
+
+# git alias
+alias gittree=''
