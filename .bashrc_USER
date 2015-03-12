@@ -24,12 +24,31 @@ alias cscopedb='ack -f --cpp >| cscope.files && cscope -b -q -k'
 # git alias
 alias gittree=''
 
-GIT_PROMPT_ONLY_IN_REPO=1
-source /usr/local/opt/bash-git-prompt/share/gitprompt.sh
-
-# pipe and highlight
-source /Users/haochen/hhighlighter/ph.sh
+# for MACOSX
+if [ -f /usr/local/opt/bash-git-prompt/share/gitprompt.sh ]; then
+    GIT_PROMPT_ONLY_IN_REPO=1
+    source /usr/local/opt/bash-git-prompt/share/gitprompt.sh
+fi
 
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
+fi
+
+# pipe and highlight
+if [ -f /Users/haochen/hhighlighter/ph.sh ]; then
+    source /Users/haochen/hhighlighter/ph.sh
+fi
+
+# for ARCH linux
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+    source /usr/share/git/completion/git-completion.bash
+fi
+
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWUPSTREAM=1
+    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 fi
