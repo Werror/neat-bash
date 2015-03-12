@@ -8,6 +8,9 @@ alias l='ls -lp'
 alias ll='ls -lahp'
 alias lr='ls -lahprt' 
 alias h='history'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
 
 # project alias
 alias youilabs='cd /Users/haochen/youilabs'
