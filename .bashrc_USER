@@ -1,6 +1,7 @@
 # set custome bash prompt
 PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
 
+export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
 # global alias
@@ -12,12 +13,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-# project alias
-alias youilabs='cd /Users/haochen/youilabs'
-alias eclipse='cd /Users/haochen/youilabs/RogersEclipse'
-alias uswish='cd /Users/haochen/youilabs/RogersEclipse/uswish'
-alias iosh='cd build/ios-handset'
-alias iost='cd build/ios-tablet'
 alias ctagdb='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=c++ .'
 alias cscopedb='ack -f --cpp >| cscope.files && cscope -b -q -k'
 
@@ -25,18 +20,13 @@ alias cscopedb='ack -f --cpp >| cscope.files && cscope -b -q -k'
 alias gittree=''
 
 # for MACOSX
-if [ -f /usr/local/opt/bash-git-prompt/share/gitprompt.sh ]; then
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
-    source /usr/local/opt/bash-git-prompt/share/gitprompt.sh
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
-fi
-
-# pipe and highlight
-if [ -f /Users/haochen/hhighlighter/ph.sh ]; then
-    source /Users/haochen/hhighlighter/ph.sh
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
 fi
 
 # for ARCH linux
