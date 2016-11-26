@@ -35,7 +35,6 @@ alias gitroot='cd $(git rev-parse --show-cdup)'
 
 # for MACOSX
 if [[ "$os_type" == "Darwin" ]]; then
-    echo "MACOSX Darwin"
     if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
         GIT_PROMPT_ONLY_IN_REPO=1
         source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
