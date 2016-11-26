@@ -1,6 +1,6 @@
-eval "$(rbenv init -)"
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+echo "Interactive Login Shell"
 
-if [ -f ~/.bashrc_USER ]; then . ~/.bashrc_USER; fi
+if [ -f ~/.bashrc_USER ]; then
+    . ~/.bashrc_USER;
+fi
 
