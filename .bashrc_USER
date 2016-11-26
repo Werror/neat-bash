@@ -1,8 +1,14 @@
 # set custome bash prompt
 PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
 
+which neofetch
+[ $? = 0 ] && neofetch --ascii || echo "neofetch is not installed"
+
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # global alias
 alias l='ls -lp'
@@ -17,7 +23,7 @@ alias ctagdb='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=
 alias cscopedb='ack -f --cpp >| cscope.files && cscope -b -q -k'
 
 # git alias
-alias gittree=''
+alias gitroot='cd $(git rev-parse --show-cdup)'
 
 # for MACOSX
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
@@ -41,4 +47,8 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWUPSTREAM=1
     PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n[\W$(__git_ps1 " (%s)")]\$ '
+fi
+
+if [ -f "$HOME/hhighlighter/h.sh" ]; then
+    source $HOME/hhighlighter/h.sh
 fi
