@@ -5,9 +5,9 @@
 os_type=`uname`
 
 # set custome bash prompt
-PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
+# PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
 
-which neofetch
+which neofetch &> /dev/null
 [ $? = 0 ] && neofetch --ascii || echo "neofetch is not installed"
 
 export CLICOLOR=1
@@ -79,6 +79,11 @@ if [[ "$os_type" == "Linux" ]]; then
     #     GIT_PS1_SHOWUPSTREAM=1
     #     PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n[\W$(__git_ps1 " (%s)")]\$ '
     # fi
+fi
+
+# Windows Git bash
+if [[ $os_type == *"MINGW"* ]]; then
+    echo "Windows git bash" > /dev/null
 fi
 
 # common stuff
