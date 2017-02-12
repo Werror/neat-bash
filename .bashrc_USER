@@ -4,12 +4,6 @@
 
 os_type=`uname`
 
-# set custome bash prompt
-# PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
-
-which neofetch &> /dev/null
-[ $? = 0 ] && neofetch --ascii || echo "neofetch is not installed"
-
 export CLICOLOR=1
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 
@@ -17,9 +11,9 @@ export VISUAL=vim
 export EDITO="$VISUAL"
 
 # global alias
-alias l='ls -lp'
-alias ll='ls -lahp'
-alias lr='ls -lahprt'
+alias l='ls -lp --color'
+alias ll='ls -lahp --color'
+alias lr='ls -lahprt --color'
 alias h='history'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -35,6 +29,9 @@ alias gitroot='cd $(git rev-parse --show-cdup)'
 
 # for MACOSX
 if [[ "$os_type" == "Darwin" ]]; then
+    # set custome bash prompt
+    export PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
+
     if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
         GIT_PROMPT_ONLY_IN_REPO=1
         source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
@@ -49,10 +46,17 @@ if [[ "$os_type" == "Darwin" ]]; then
         echo "bash-completion no installed"
         echo "try install it using brew"
     fi
+
+    which neofetch &> /dev/null
+    [ $? = 0 ] && neofetch --ascii || echo "neofetch is not installed"
+
 fi
 
 # Linux
 if [[ "$os_type" == "Linux" ]]; then
+    # set custome bash prompt
+    export PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\n-> '
+
     # from github
     if [ -f ~/bash-git-prompt/gitprompt.sh ]; then
         GIT_PROMPT_ONLY_IN_REPO=1
@@ -79,11 +83,43 @@ if [[ "$os_type" == "Linux" ]]; then
     #     GIT_PS1_SHOWUPSTREAM=1
     #     PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n[\W$(__git_ps1 " (%s)")]\$ '
     # fi
+
+    which neofetch &> /dev/null
+    [ $? = 0 ] && neofetch --ascii || echo "neofetch is not installed"
+
 fi
 
 # Windows Git bash
 if [[ $os_type == *"MINGW"* ]]; then
-    echo "Windows git bash" > /dev/null
+    echo "Windows git bash"
+fi
+
+# Windows Cygwin
+if [[ $os_type == *"CYGWIN"* ]]; then
+    echo "Windows Cygwin"
+    export TERM=xterm-256color
+
+    if [ -f ~/git-prompt.sh ]; then
+        source ~/git-prompt.sh 
+        export PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\][\d \t:\u@\h]\n\[`tput sgr0`\][$PWD]\[\033[36m\]`__git_ps1`\[\033[0m\]\n-> '
+    else
+        echo "git-prompt is not installed"
+        echo "try to install git-bash.exe"
+    fi
+
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        source /usr/share/bash-completion/bash_completion
+    else
+        echo "bash_completion not installed"
+        echo "User Cygwin installer to install"
+    fi
+
+    if [ -f ~/git-completion.bash ]; then
+        source ~/git-completion.bash
+    else
+        echo "bash_completion not installed"
+        echo "User Cygwin installer to install"
+    fi
 fi
 
 # common stuff
